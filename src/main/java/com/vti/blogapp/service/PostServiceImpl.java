@@ -1,5 +1,6 @@
 package com.vti.blogapp.service;
 
+import com.vti.blogapp.entity.Post;
 import com.vti.blogapp.dto.PostDto;
 import com.vti.blogapp.form.PostCreateForm;
 import com.vti.blogapp.mapper.PostMapper;
@@ -29,6 +30,6 @@ public class PostServiceImpl implements PostService{
     public PostDto create(PostCreateForm form) {
         var post = PostMapper.map(form);
         var savedPost = postRepository.save(post);
-        return savedPost;
+        return PostMapper.map(savedPost);
     }
 }

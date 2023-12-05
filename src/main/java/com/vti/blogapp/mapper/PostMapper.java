@@ -1,6 +1,7 @@
 package com.vti.blogapp.mapper;
 
 import com.vti.blogapp.dto.PostDto;
+import com.vti.blogapp.entity.Post;
 import com.vti.blogapp.form.PostCreateForm;
 
 public class PostMapper {
