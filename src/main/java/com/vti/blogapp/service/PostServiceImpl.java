@@ -5,17 +5,30 @@ import com.vti.blogapp.form.PostCreateForm;
 import com.vti.blogapp.mapper.PostMapper;
 import com.vti.blogapp.repository.PostRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+
 
 @Service
 @AllArgsConstructor
 public class PostServiceImpl implements PostService{
     private final PostRepository postRepository;
 
+
+
+    @Override
+    public Page<PostDto> findAll(Pageable pageable) {
+        return postRepository.findAll(pageable)
+                .map(post -> PostMapper.map(post));
+
+    }
+
     @Override
     public PostDto create(PostCreateForm form) {
         var post = PostMapper.map(form);
         var savedPost = postRepository.save(post);
-        return null;
+        return savedPost;
     }
 }
