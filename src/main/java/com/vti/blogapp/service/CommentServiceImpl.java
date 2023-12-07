@@ -6,6 +6,8 @@ import com.vti.blogapp.mapper.CommentMapper;
 import com.vti.blogapp.repository.CommentRepository;
 import com.vti.blogapp.repository.PostRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -23,6 +25,13 @@ public class CommentServiceImpl implements CommentService {
         comment.setPost(post);
         var savedComment = commentRepository.save(comment);
         return CommentMapper.map(savedComment);
+    }
+
+    @Override
+    public Page<CommentDto> findAll(Pageable pageable) {
+
+        return commentRepository.findAll(pageable)
+                .map(comment -> CommentMapper.map(comment));
     }
 
 
