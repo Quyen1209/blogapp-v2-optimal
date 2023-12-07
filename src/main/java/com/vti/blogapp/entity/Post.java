@@ -34,4 +34,6 @@ public class Post {
     @Column(name = "updated_at", nullable = false)
     @UpdateTimestamp
     private LocalDateTime updatedAt;
+
+
 }
